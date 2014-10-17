@@ -4,7 +4,6 @@ using namespace std;
 
 EnigmaMachine::EnigmaMachine(char** configFile) 
 {
-  configure(configFile);
   EnigmaMachine::initialiseMapping();
 }
 
@@ -31,9 +30,4 @@ vector<int> EnigmaMachine::read_file(char *filename)
   file.close();
   
   return input;
-}
-
-void EnigmaMachine::configure(char** configFile)
-{
-  // TODO: implement configure
 }

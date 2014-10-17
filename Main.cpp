@@ -6,8 +6,6 @@
 #include "Enigma.h"
 #include "Reflector.h"
 #include "Plugboard.h"
-#include <fstream> // for read_file
-#include <vector>  // for read_file
 
 using namespace std;
 

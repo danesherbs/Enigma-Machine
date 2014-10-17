@@ -5,10 +5,8 @@
 
 class Configurable
 {
-  public:
-    std::vector<char*> readFiles(int argc, char **argv);
   protected:
-  	virtual void configure(char** configFile) = 0;
+  	virtual void configure(std::vector<int> configSettings) = 0;
 };
 
 #endif

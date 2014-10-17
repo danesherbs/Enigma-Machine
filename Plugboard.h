@@ -10,7 +10,7 @@ class Plugboard : public Configurable, public Encode
   	Plugboard(char* configFile);
     virtual int encode(int input);
   protected:
-  	virtual void configure(char**);
+  	virtual void configure(std::vector<int> configSettings);
   	
 };
 

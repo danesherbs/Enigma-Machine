@@ -7,7 +7,7 @@ int Plugboard::encode(int input)
   return 0;
 }
 
-void Plugboard::configure(char**)
+void Plugboard::configure(std::vector<int> configSettings)
 {
 
 }
