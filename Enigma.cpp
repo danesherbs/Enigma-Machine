@@ -1,8 +1,11 @@
 #include "Enigma.h"
 
-EnigmaMachine::EnigmaMachine()
+using namespace std;
+
+EnigmaMachine::EnigmaMachine(char** configFile) 
 {
-	EnigmaMachine::initialiseMapping();
+  configure(configFile);
+  EnigmaMachine::initialiseMapping();
 }
 
 void EnigmaMachine::initialiseMapping()
@@ -11,4 +14,26 @@ void EnigmaMachine::initialiseMapping()
   {
     mapIntToChar[idx] = (char) ASCII_A + idx;
   }
+}
+
+vector<int> EnigmaMachine::read_file(char *filename)
+{
+  vector<int> input; int next;
+  ifstream file (filename);
+
+  while(!file.eof())
+  {
+  	file >> ws; // ignore whitespace
+    file >> next; // store next int
+    input.push_back(next); // append to vector
+  }
+
+  file.close();
+  
+  return input;
+}
+
+void EnigmaMachine::configure(char** configFile)
+{
+  // TODO: implement configure
 }

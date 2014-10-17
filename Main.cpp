@@ -5,16 +5,15 @@
 
 #include "Enigma.h"
 #include "Reflector.h"
+#include "Plugboard.h"
+#include <fstream> // for read_file
+#include <vector>  // for read_file
 
 using namespace std;
 
+vector<int> read_file(char *filename);
+
 int main(int argc, char **argv)
 {
-  cout << "TODO: implement an Enigma machine" << endl;
-
-  Reflector reflector;
-  cout << reflector.reflect('A') << endl;
-  cout << reflector.reflect('M') << endl;
-
   return 0;
 }
