@@ -16,7 +16,8 @@ class Rotor : public Configurable, public Encode, public Decode
   protected:
     virtual void configure(std::vector<int> configSettings);
   private:
-    std::map<int,int> mapping;
+    std::map<int,int> forward_map;
+    std::map<int,int> backward_map;
     void rotate();
 };
 
