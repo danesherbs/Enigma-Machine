@@ -5,16 +5,15 @@
 #include <vector>  // for read_file
 #include "Plugboard.h"
 
-class EnigmaMachine
+class EnigmaMachine : public Encode
 {
   public:
-    EnigmaMachine(char**);
+    EnigmaMachine(int argc, char**);
+    virtual int encode(int input) { return 1; };
   private: 	
    	std::vector<int> read_file(char *filename);
    	void initialiseIntCharMap();
    	std::map<int,char> intCharMap;
-   	static 
-   	const char ASCII_A = 65;
 };
 
 #endif /* ENIGMA_H */

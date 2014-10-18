@@ -2,10 +2,10 @@
 
 using namespace std;
 
-EnigmaMachine::EnigmaMachine(char** configFile)
+EnigmaMachine::EnigmaMachine(int argc, char** configFiles)
 {
   initialiseIntCharMap();
-  Plugboard plugboard (EnigmaMachine::read_file(configFile[1]));
+  Plugboard plugboard (EnigmaMachine::read_file(configFiles[argc-1]));
 }
 
 vector<int> EnigmaMachine::read_file(char *filename)
@@ -27,8 +27,8 @@ vector<int> EnigmaMachine::read_file(char *filename)
 
 void EnigmaMachine::initialiseIntCharMap()
 {
- for (int idx = 0; idx < 26; idx++)
- {
-   intCharMap[idx] = (char) ASCII_A + idx;
+  for (int idx = 0; idx < 26; idx++)
+  {
+    intCharMap[idx] = (char) ASCII_A + idx;
  }
 }
