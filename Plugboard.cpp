@@ -2,7 +2,6 @@
 
 // Public
 Plugboard::Plugboard(std::vector<int> configSettings) {
-  initialiseMapping();
 	configure(configSettings);
 }
 
@@ -15,6 +14,8 @@ int Plugboard::encode(int input)
 void Plugboard::configure(std::vector<int> configSettings)
 {
   assert(configSettings.size() % 2 == 0); // must have even num of mappings
+
+  initialiseMapping();
 
   int first, second; // elements of pair to be swapped
   for(size_t size = 0; size < configSettings.size(); size++)

@@ -2,5 +2,10 @@
 
 Rotor::Rotor(std::vector<int> configSettings)
 {
-	// initialise rotor
+	configure(configSettings);
+}
+
+void configure(std::vector<int> configSettings)
+{
+  mapping = configSettings;
 }
