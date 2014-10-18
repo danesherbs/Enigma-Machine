@@ -1,11 +1,8 @@
 #include "Reflector.h"
 
-#include <iostream>
-
-Reflector::Reflector() {}
-
-char Reflector::reflect(char chr)
+// Pre: 0 <= chr <= 25
+int Reflector::reflect(int input)
 {
-    int chrInt = chr - ASCII_A; // 0 <= chrInt <= 25
-	return (char) ( chrInt + SHIFT ) % LETTERS_IN_ALPHABET + ASCII_A;
+	assert(0 <= input && input <= 25);
+	return ( input + SHIFT ) % LETTERS_IN_ALPHABET;
 }

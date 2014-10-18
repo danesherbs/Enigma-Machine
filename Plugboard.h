@@ -3,15 +3,24 @@
 
 #include "Configurable.h"
 #include "Encode.h"
+#include "Decode.h"
+#include <vector>
+#include <map>
+#include <iostream>
+#include <assert.h>
 
-class Plugboard : public Configurable, public Encode
+class Plugboard : public Configurable, public Encode, public Decode
 {
   public:
-  	Plugboard(char* configFile);
+  	Plugboard(std::vector<int> configSettings);
     virtual int encode(int input);
+    virtual int decode(int input) { return encode(input); };
   protected:
   	virtual void configure(std::vector<int> configSettings);
-  	
+  private:
+  	std::map<int,int> mapping;
+  	void initialiseMapping();
+    static const int LETTERS_IN_ALPHABET = 26;
 };
 
 #endif // PLUGBOARD_H

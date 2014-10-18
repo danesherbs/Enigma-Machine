@@ -1,19 +1,20 @@
 #ifndef ENIGMA_H
 #define ENIGMA_H
 
-#include "Constants.h"
 #include <fstream> // for read_file
 #include <vector>  // for read_file
-#include <map>
+#include "Plugboard.h"
 
 class EnigmaMachine
 {
   public:
     EnigmaMachine(char**);
-    std::map<int,char> mapIntToChar; // TODO: abstract to constants and make static const
   private: 	
-   	void initialiseMapping();
    	std::vector<int> read_file(char *filename);
+   	void initialiseIntCharMap();
+   	std::map<int,char> intCharMap;
+   	static 
+   	const char ASCII_A = 65;
 };
 
 #endif /* ENIGMA_H */

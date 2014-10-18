@@ -1,13 +1,15 @@
 #ifndef REFLECTOR_H
 #define REFLECTOR_H
 
-#include "Constants.h"
+#include <assert.h>
 
 class Reflector
 {
     public:
-    	Reflector(); //  need initialisation list since const can only be defined once
-        char reflect(char chr);
+        int reflect(int);
+    private:
+    	static const int SHIFT = 13;
+    	static const int LETTERS_IN_ALPHABET = 26;
 };
 
 #endif /* REFLECTOR_H */

@@ -1,17 +1,18 @@
-// skeleton C++ file, you will need to edit this and other files to implement your enigma machine
 #include <stdexcept>
 #include <iostream>
-#include <fstream>
 
 #include "Enigma.h"
 #include "Reflector.h"
 #include "Plugboard.h"
 
 using namespace std;
+char intToChar(int input);
+int charToInt(char chr);
 
-vector<int> read_file(char *filename);
 
 int main(int argc, char **argv)
 {
+  vector<int> read_file(char *filename);
+
   return 0;
 }
