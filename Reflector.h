@@ -3,11 +3,16 @@
 
 #include <assert.h>
 
-class Reflector
+#include "Encode.h"
+
+class Reflector : public Encode
 {
     public:
-        int reflect(int);
+
+    	int encode(int);
+
     private:
+    	
     	static const int SHIFT = 13;
     	static const int LETTERS_IN_ALPHABET = 26;
 };

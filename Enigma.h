@@ -3,17 +3,39 @@
 
 #include <fstream> // for read_file
 #include <vector>  // for read_file
+
 #include "Plugboard.h"
+#include "Rotor.h"
+#include "Reflector.h"
 
 class EnigmaMachine : public Encode
 {
   public:
+
     EnigmaMachine(int argc, char**);
-    virtual int encode(int input) { return 1; };
-  private: 	
+  	char input_message(char);
+    virtual int encode(int input);
+
+  private:
+
+    // Fields
+  	Plugboard plugboard;
+  	Reflector reflector;
+  	std::vector<Rotor> rotors;
    	std::vector<int> read_file(char *filename);
-   	void initialiseIntCharMap();
    	std::map<int,char> intCharMap;
+   	std::vector<int> rotationCount;
+   	
+   	// Initialisaiton
+   	void initialiseIntCharMap();
+  	void initialiseRotors(int argc, char** configFiles);
+  	void initialisePlugboard(int argc, char** configFiles);
+
+    // Helpers
+  	int charToInt(char);
+   	void update_rotors();
+  	int push_forward(int input);
+  	int push_backward(int input);
 };
 
 #endif /* ENIGMA_H */
