@@ -11,13 +11,12 @@ class Rotor : public Configurable, public Encode, public Decode
 {
   public:
     Rotor(std::vector<int> configSettings);
-    virtual int encode(int input) { return 1; };
-    virtual int decode(int input) { return 1; };
+    virtual int encode(int input);
+    virtual int decode(int input);
   protected:
     virtual void configure(std::vector<int> configSettings);
   private:
-    std::map<int,int> forward_map;
-    std::map<int,int> backward_map;
+    std::vector<int> forward, backward;
     void rotate();
 };
 

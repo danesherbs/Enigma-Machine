@@ -5,21 +5,32 @@ Rotor::Rotor(std::vector<int> configSettings)
 	configure(configSettings);
 }
 
+int Rotor::encode(int input) 
+{
+  int output = forward[input];
+  rotate();
+  return output;
+}
+
+int Rotor::decode(int input) 
+{
+  return backward[input];
+}
+
 void Rotor::configure(std::vector<int> configSettings)
 {
   std::vector<int> forward, backward;
-  int count = 0;
+  forward = configSettings;
   for(int i = 0; i < configSettings.size(); i++)
   {
-    forward_map[i] = configSettings[i];
-    backward_map[forward_map[i]] = i;
+    backward[forward[i]] = i;
   }
 }
 
-void Rotor::rotate() // review
+void Rotor::rotate() // anti-clockwise
 {
-  int first = forward_map[0];
-  forward_map.erase(forward_map.begin());
-  forward_map = forward_map.push_back(first);
-  configure(forward_map);
+  int first = forward[0];
+  forward.erase(forward.begin());
+  forward.push_back(first);
+  configure(forward);
 }
