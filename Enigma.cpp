@@ -58,12 +58,10 @@ int EnigmaMachine::encode(int input)
   cout << "After plugboard: " << output << endl;
 
   cout << "Updating rotors... ";
-
-/* FOR TEST
   update_rotors();
-
   cout << "Done." << endl;
 
+/* FOR TEST
   cout << "Size of rotationCount = " << this->rotationCount.size() << endl;
   cout << "Rotation count: " << this->rotationCount.at(0) << endl;
 */

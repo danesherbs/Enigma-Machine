@@ -1,25 +1,27 @@
 # edit this makefile so that running make compiles your enigma program
 
+C_FLAGS = g++ -c -std=c++11
+
 enigma: Main.o Enigma.o Reflector.o Plugboard.o Rotor.o
-	g++ -o enigma Main.o Enigma.o Reflector.o Plugboard.o Rotor.o
+	g++ -std=c++11 Main.o Enigma.o Reflector.o Plugboard.o Rotor.o -o enigma
 
 Main.o: Main.cpp
-	g++ -c Main.cpp
+	$(C_FLAGS) Main.cpp
 
 Enigma.o: Enigma.cpp Enigma.h
-	g++ -c Enigma.cpp
+	$(C_FLAGS) Enigma.cpp
 
 Reflector.o: Reflector.cpp Reflector.h
-	g++ -c Reflector.cpp
+	$(C_FLAGS) Reflector.cpp
 
 Plugboard.o: Plugboard.cpp Plugboard.h
-	g++ -c Plugboard.cpp
+	$(C_FLAGS) Plugboard.cpp
 
 Configurable.o: Configurable.cpp Configurable.h
-	g++ -c Configurable.cpp
+	$(C_FLAGS) Configurable.cpp
 
 Rotor.o: Rotor.cpp Rotor.h
-	g++ -c Rotor.cpp
+	$(C_FLAGS) Rotor.cpp
 
 clean:
 	rm -rf enigma *.o *.h.gch
