@@ -66,7 +66,7 @@ void Rotor::rotate_anticlockwise() // anti-clockwise
   configure(forward);
 }
 
-void Rotor::rotate_clockwise() // anti-clockwise
+void Rotor::rotate_clockwise() // clockwise
 {
   int last = forward[25];
   forward.erase(forward.end());

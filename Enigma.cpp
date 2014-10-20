@@ -60,8 +60,8 @@ int EnigmaMachine::encode(int input)
   cout << "Updating rotors... ";
   update_rotors();
   cout << "Done." << endl;
-
 /* FOR TEST
+
   cout << "Size of rotationCount = " << this->rotationCount.size() << endl;
   cout << "Rotation count: " << this->rotationCount.at(0) << endl;
 */
@@ -83,7 +83,7 @@ void EnigmaMachine::update_rotors()
     if(rotationCount[pos] == 26)
     {
       rotationCount[pos] = 0;
-      if(pos + 1 < rotors.size())
+      //if(pos + 1 < rotors.size())
       {
       rotors[pos + 1].rotate_anticlockwise();
       rotationCount[pos + 1] += 1;
