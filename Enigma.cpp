@@ -11,21 +11,12 @@ EnigmaMachine::EnigmaMachine(int argc, char** configFiles) //: plugboard(read_fi
   Plugboard new_plugboard(read_file(configFiles[argc-1]));
   set_plugboard(new_plugboard);
 
-  cout << "Finished init plugboard" <<  endl;
-
-  std::vector<int> rotationCount(rotors.size(), 0);
-  this->rotationCount = rotationCount;
-  cout << "Size of rotation count: " << this->rotationCount.size() << endl;
-
-
   initialiseRotors(argc, configFiles);
+  this->rotationCount = std::vector<int>(rotors.size(), 0);
 
-
-  // Start test
-
+  cout << "Size of rotation count: " << this->rotationCount.size() << endl;
   encode(8);
 
-  // End test
 }
 
 char EnigmaMachine::input_message(char chr)
@@ -60,12 +51,7 @@ int EnigmaMachine::encode(int input)
   cout << "Updating rotors... ";
   update_rotors();
   cout << "Done." << endl;
-/* FOR TEST
-
-  cout << "Size of rotationCount = " << this->rotationCount.size() << endl;
-  cout << "Rotation count: " << this->rotationCount.at(0) << endl;
-*/
-
+  
   return output;
 }
 
@@ -83,7 +69,7 @@ void EnigmaMachine::update_rotors()
     if(rotationCount[pos] == 26)
     {
       rotationCount[pos] = 0;
-      //if(pos + 1 < rotors.size())
+      if(pos + 1 < rotors.size()) // if not last rotor
       {
       rotors[pos + 1].rotate_anticlockwise();
       rotationCount[pos + 1] += 1;

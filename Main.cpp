@@ -16,16 +16,18 @@ int main(int argc, char **argv)
 {
   EnigmaMachine enigmaMachine(argc, argv);
 
-  /*
-  char input[] = "";
+  
+  char input = 'q';
   cin >> input;
-  while(strcmp(input, ":q") != 0)
+  while(input != 'q')
   {
-
+    cout << enigmaMachine.input_message(input) << endl;
+    cin >> input;
   }
 
-  cout << enigmaMachine.input_message('A') << endl;
-  */
+  //cout << enigmaMachine.input_message('A') << endl;
+  
+
 
   std::vector<int> read_file(char *filename);
   return 0;
