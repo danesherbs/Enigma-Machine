@@ -5,11 +5,27 @@
 
 using namespace std;
 
-EnigmaMachine::EnigmaMachine(int argc, char** configFiles) : plugboard(read_file(configFiles[argc-1]))
+EnigmaMachine::EnigmaMachine(int argc, char** configFiles) //: plugboard(read_file(configFiles[argc-1]))
 {
   initialiseIntCharMap();
-  initialiseRotors(argc, configFiles);
+  Plugboard new_plugboard(read_file(configFiles[argc-1]));
+  set_plugboard(new_plugboard);
+
+  cout << "Finished init plugboard" <<  endl;
+
   std::vector<int> rotationCount(rotors.size(), 0);
+  this->rotationCount = rotationCount;
+  cout << "Size of rotation count: " << this->rotationCount.size() << endl;
+
+
+  initialiseRotors(argc, configFiles);
+
+
+  // Start test
+
+  encode(8);
+
+  // End test
 }
 
 char EnigmaMachine::input_message(char chr)
@@ -27,30 +43,53 @@ int EnigmaMachine::encode(int input)
   assert(0 <= input && input <= 25);
 
   int output = input; // for now
-  
-  output = plugboard.encode(output);
-  output = push_forward(output);
-  output = reflector.encode(output);
-  output = push_backward(output);
-  output = plugboard.encode(output);
 
+  
+  cout << "Input: " << input << endl;
+  output = plugboard.encode(output);
+  cout << "After plugboard: " << output << endl;
+  output = push_forward(output);
+  cout << "After rotors: " << output << endl;
+  output = reflector.encode(output);
+  cout << "After reflector: " << output << endl;
+  output = push_backward(output);
+  cout << "After rotors: " << output << endl;
+  output = plugboard.encode(output);
+  cout << "After plugboard: " << output << endl;
+
+  cout << "Updating rotors... ";
+
+/* FOR TEST
   update_rotors();
+
+  cout << "Done." << endl;
+
+  cout << "Size of rotationCount = " << this->rotationCount.size() << endl;
+  cout << "Rotation count: " << this->rotationCount.at(0) << endl;
+*/
 
   return output;
 }
 
 void EnigmaMachine::update_rotors()
 {
+  if(rotors.size() != 0)
+  {
   rotors[0].rotate_anticlockwise();
   rotationCount[0] += 1;
+  }
 
+  // update rotation count; propagate rotation if necessary
   for(int pos = 0; pos < rotors.size(); pos++)
   {
     if(rotationCount[pos] == 26)
     {
       rotationCount[pos] = 0;
-      rotors[pos+1].rotate_anticlockwise();
-      rotationCount[pos+1] += 1;
+      if(pos + 1 < rotors.size())
+      {
+      rotors[pos + 1].rotate_anticlockwise();
+      rotationCount[pos + 1] += 1;
+      }
     }
   }
 }
@@ -109,5 +148,8 @@ void EnigmaMachine::initialiseRotors(int argc, char** configFiles)
   }
 }
 
-
+void EnigmaMachine::set_plugboard(Plugboard plugboard)
+{
+  this->plugboard = plugboard;
+}
 

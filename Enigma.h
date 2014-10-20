@@ -36,6 +36,10 @@ class EnigmaMachine : public Encode
    	void update_rotors();
   	int push_forward(int input);
   	int push_backward(int input);
+
+  	// Getters and setters
+  	void set_plugboard(Plugboard plugboard);
+  	Plugboard get_plugboard();
 };
 
 #endif /* ENIGMA_H */

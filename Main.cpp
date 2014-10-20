@@ -14,9 +14,7 @@ int charToInt(char chr);
 
 int main(int argc, char **argv)
 {
-  std::cout << "Before enigmaMachine" << endl;
   EnigmaMachine enigmaMachine(argc, argv);
-  std::cout << "After enigmaMachine" << endl;
 
   /*
   char input[] = "";
