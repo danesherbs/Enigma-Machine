@@ -3,6 +3,7 @@
 
 #include <fstream> // for read_file
 #include <vector>  // for read_file
+#include <string>
 
 #include "Plugboard.h"
 #include "Rotor.h"
@@ -13,7 +14,7 @@ class EnigmaMachine : public Encode
   public:
 
     EnigmaMachine(int argc, char**);
-  	char input_message(char);
+  	std::string input_message(std::string);
     virtual int encode(int input);
 
   private:

@@ -5,57 +5,29 @@ Rotor::Rotor(std::vector<int> configSettings)
 {
   forward.resize(LETTERS_IN_ALPHABET);
   backward.resize(LETTERS_IN_ALPHABET);
-	configure(configSettings);
+
+  forward = configSettings; // configSettings = forward mapping
+	configure(forward);
 }
 
-// TEMP
-
-/*
-void Rotor::printRotorConfig()
+int Rotor::encode(int input)
 {
-  std::cout << "Forward: ";
-  for(auto elem : forward)
-  {
-    std::cout << elem << " ";
-  } std::cout << std::endl;
-
-  std::cout << "Backward: ";
-  for(auto elem : backward)
-  {
-    std::cout << elem << " ";
-  } std::cout << std::endl;
-
-  rotate_anticlockwise();
-}
-
-*/
-
-// end TEMP
-
-int Rotor::encode(int input) 
-{
-  int output = forward[input];
-  rotate_anticlockwise();
-  return output;
+  std::cout << "Forward: " << input << " -> " << forward[input] << std::endl;
+  return forward[input];
 }
 
 int Rotor::decode(int input) 
 {
+  std::cout << "Backward: " << input << " -> " << backward[input] << std::endl;
   return backward[input];
 }
 
-void Rotor::configure(std::vector<int> configSettings)
+void Rotor::configure(std::vector<int> forward)
 {
-  forward = clone(configSettings); // configSettings = forward mapping
-  for(int i = 0; i < backward.size(); i++)
+  for(int i = 0; i < forward.size(); i++)
   {
     backward[forward[i]] = i;
   }
-}
-
-std::vector<int> Rotor::clone(std::vector<int> configSettings)
-{
-  return configSettings;
 }
 
 void Rotor::rotate_anticlockwise() // anti-clockwise
@@ -63,13 +35,5 @@ void Rotor::rotate_anticlockwise() // anti-clockwise
   int first = forward[0];
   forward.erase(forward.begin());
   forward.push_back(first);
-  configure(forward);
-}
-
-void Rotor::rotate_clockwise() // clockwise
-{
-  int last = forward[25];
-  forward.erase(forward.end());
-  forward.insert(forward.begin(), last);
   configure(forward);
 }

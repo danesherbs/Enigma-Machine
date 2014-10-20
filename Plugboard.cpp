@@ -11,7 +11,6 @@ Plugboard::Plugboard(std::vector<int> configSettings)
   configure(configSettings);
 }
 
-
 int Plugboard::encode(int input)
 {
   return get_map().at(input);
@@ -38,6 +37,7 @@ std::vector<int> Plugboard::get_map()
 {
   return this->mapping;
 }
+
 
 void Plugboard::set_map(std::vector<int> new_map)
 {
