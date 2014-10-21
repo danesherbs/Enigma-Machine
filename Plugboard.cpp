@@ -2,13 +2,11 @@
 #include <iostream>
 #include <numeric>
 
-using namespace std;
-
 // Public
-Plugboard::Plugboard(std::vector<int> configSettings)
+Plugboard::Plugboard(char* configSetting)
 {
   set_map(init_map());
-  configure(configSettings);
+  configure(read_file(configSetting));
 }
 
 int Plugboard::encode(int input)

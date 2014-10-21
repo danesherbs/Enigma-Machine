@@ -4,18 +4,18 @@
 #include "Configurable.h"
 #include "Encode.h"
 #include "Decode.h"
+
 #include <vector>
 #include <iostream>
 #include <assert.h>
 
 class Plugboard : public Configurable, public Encode, public Decode
-
 {
   public:
 
   	Plugboard() {};
-  	Plugboard(std::vector<int> configSettings);
-    virtual int encode(int input);
+  	Plugboard(char* configSetting);
+    virtual int encode(int input) override;
     virtual int decode(int input) { return encode(input); };
 
   protected:

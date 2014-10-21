@@ -14,12 +14,14 @@ class Rotor : public Configurable, public Encode, public Decode
     virtual int encode(int input);
     virtual int decode(int input);
     void rotate_anticlockwise();
+    bool rotate();
 
   protected:
     virtual void configure(std::vector<int> configSettings);
 
   private:
     std::vector<int> forward, backward;
+    int rotation_count;
 };
 
 #endif /* ROTOR_H */

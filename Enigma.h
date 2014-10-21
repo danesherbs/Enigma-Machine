@@ -25,7 +25,6 @@ class EnigmaMachine : public Encode
   	std::vector<Rotor> rotors;
    	std::vector<int> read_file(char *filename);
    	std::map<int,char> intCharMap;
-   	std::vector<int> rotationCount;
    	
    	// Initialisaiton
    	void initialiseIntCharMap();
@@ -34,7 +33,7 @@ class EnigmaMachine : public Encode
 
     // Helpers
   	int charToInt(char);
-   	void update_rotors();
+   	void update_rotors(int);
   	int push_forward(int input);
   	int push_backward(int input);
 

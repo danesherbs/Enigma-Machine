@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 
   string input_str;
   cin >> input_str;
-  cout << enigmaMachine.input_message(input_str) << endl;    
+  cout << enigmaMachine.input_message(input_str) << endl;  
 
   return EXIT_SUCCESS;
 }

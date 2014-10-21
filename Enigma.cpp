@@ -11,12 +11,27 @@ EnigmaMachine::EnigmaMachine(int argc, char** configFiles) //: plugboard(read_fi
   initialiseIntCharMap();
 
   // Plugboard
-  Plugboard new_plugboard(read_file(configFiles[argc-1]));
+  Plugboard new_plugboard(configFiles[argc-1]);
   set_plugboard(new_plugboard);
 
   // Rotor(s)
   initialiseRotors(argc, configFiles);
-  this->rotationCount = std::vector<int>(rotors.size(), 0);
+
+  // START Sacha's code
+
+  /*
+  if (argc > 2)
+  {
+    for(int i = 1; i < argc-1; i++)
+    {
+      rotor = new Rotor(arg[i]);
+      rotors.push_back(*rotor);
+    }
+  }
+  */
+
+  // END Sacha's code
+
 }
 
 string EnigmaMachine::input_message(string input_str)
@@ -29,6 +44,8 @@ string EnigmaMachine::input_message(string input_str)
         current_char = input_str[pos];
         str_result.push_back(encode(charToInt(current_char)) + ASCII_A);
     }
+
+    //cout << "IN INPUT MESSAGE: I'm outputting the result " << str_result << endl;
 
     return str_result;
 }
@@ -44,20 +61,20 @@ int EnigmaMachine::encode(int input)
 
   int output = input; // for now
   
-  //cout << "Input: " << input << endl;
+  cout << "Input: " << input << endl;
   output = plugboard.encode(output);
-  //cout << "After plugboard: " << output << endl;
+  cout << "After plugboard: " << output << endl;
   output = push_forward(output);
-  //cout << "After rotors: " << output << endl;
+  cout << "After rotors: " << output << endl;
   output = reflector.encode(output);
-  //cout << "After reflector: " << output << endl;
+  cout << "After reflector: " << output << endl;
   output = push_backward(output);
-  //cout << "After rotors: " << output << endl;
+  cout << "After rotors: " << output << endl;
   output = plugboard.encode(output);
-  //cout << "After plugboard: " << output << endl;
+  cout << "After plugboard: " << output << endl;
 
   //cout << "Updating rotors... ";
-  update_rotors();
+  if(!rotors.empty()) update_rotors(0);
   //cout << "Done." << endl;
 /* FOR TEST
 
@@ -68,29 +85,14 @@ int EnigmaMachine::encode(int input)
   return output;
 }
 
-void EnigmaMachine::update_rotors()
+void EnigmaMachine::update_rotors(int start)
 {
-  if(rotors.size() != 0)
+  rotors[start].rotate_anticlockwise();
+  if(rotors[start].rotate())
   {
-    rotors[0].rotate_anticlockwise();
-    rotationCount[0] += 1;
-  }
-
-  // update rotation count; propagate rotation if necessary
-  for(int pos = 0; pos < rotors.size(); pos++)
-  {
-    if(rotationCount[pos] == 26)
+    if(start+1 < rotors.size())
     {
-      rotationCount[pos] = 0;
-      if(pos + 1 < rotors.size())
-      {
-        rotors[pos + 1].rotate_anticlockwise();
-        rotationCount[pos + 1] += 1;
-      }
-      else
-      {
-        break;
-      }
+      update_rotors(start+1);
     }
   }
 }
@@ -115,6 +117,7 @@ int EnigmaMachine::push_backward(int input)
   return output;
 }
 
+
 vector<int> EnigmaMachine::read_file(char *filename)
 {
   vector<int> input; int next;
@@ -136,6 +139,7 @@ vector<int> EnigmaMachine::read_file(char *filename)
   
   return input;
 }
+
 
 void EnigmaMachine::initialiseIntCharMap()
 {
