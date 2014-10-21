@@ -2,11 +2,15 @@
 #include <iostream>
 #include <numeric>
 
+using namespace std;
+
 // Public
-Plugboard::Plugboard(char* configSetting)
+Plugboard::Plugboard(char* settings)
 {
-  set_map(init_map());
-  configure(read_file(configSetting));
+  mapping = std::vector<int>(LETTERS_IN_ALPHABET,0);
+  std::iota(mapping.begin(), mapping.end(), 0);
+
+  configure(read_file(settings));
 }
 
 int Plugboard::encode(int input)
@@ -21,7 +25,7 @@ void Plugboard::configure(std::vector<int> configSettings)
 
   int first, second; // elements of pair to be swapped
   
-  for(size_t pos = 0; pos < configSettings.size(); pos++)
+  for(int pos = 0; pos < configSettings.size(); pos++)
   {
     first  = configSettings[pos];
     second = configSettings[++pos];
@@ -33,24 +37,10 @@ void Plugboard::configure(std::vector<int> configSettings)
 // Private
 std::vector<int> Plugboard::get_map()
 {
-  return this->mapping;
-}
-
-
-void Plugboard::set_map(std::vector<int> new_map)
-{
-  this->mapping = new_map;
+  return mapping;
 }
 
 void Plugboard::set_map_val(int value, int index)
 {
-  this->mapping[index] = value;
+  mapping[index] = value;
 }
-
-std::vector<int> Plugboard::init_map()
-{
-  std::vector<int> map(26);
-  std::iota(map.begin(), map.end(), 0);
-  return map;
-}
-

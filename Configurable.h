@@ -2,6 +2,8 @@
 #define CONFIGURABLE_H
 
 #include <vector>
+#include <fstream>
+#include <iostream>
 
 class Configurable
 {

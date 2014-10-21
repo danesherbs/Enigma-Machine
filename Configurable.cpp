@@ -1,12 +1,16 @@
 #include "Configurable.h"
 
-std::vector<int> Configurable::read_file(char *filename)
+using namespace std;
+
+vector<int> Configurable::read_file(char *filename)
 {
   vector<int> input; int next;
   ifstream file (filename);
+  
   if(!file.is_open())
   {
-    exit(-1);
+    cout << "Error opening rotor file" << endl;
+    exit(EXIT_FAILURE);
   }
 
   while(!file.eof())

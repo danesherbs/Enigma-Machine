@@ -2,8 +2,8 @@
 
 C_FLAGS = g++ -c -std=c++11
 
-enigma: Main.o Enigma.o Reflector.o Plugboard.o Rotor.o
-	g++ -std=c++11 Main.o Enigma.o Reflector.o Plugboard.o Rotor.o -o enigma
+enigma: Main.o Enigma.o Reflector.o Plugboard.o Rotor.o Configurable.o
+	g++ -std=c++11 Main.o Enigma.o Reflector.o Plugboard.o Rotor.o Configurable.o -o enigma
 
 Main.o: Main.cpp
 	$(C_FLAGS) Main.cpp

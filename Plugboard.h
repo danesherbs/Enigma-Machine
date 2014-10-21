@@ -31,9 +31,6 @@ class Plugboard : public Configurable, public Encode, public Decode
     std::vector<int> get_map();
     void set_map(std::vector<int>);
     void set_map_val(int, int);
-
-    // Initialisers
-    std::vector<int> init_map();
 };
 
 #endif // PLUGBOARD_H
