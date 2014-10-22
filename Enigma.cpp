@@ -14,22 +14,6 @@ EnigmaMachine::EnigmaMachine(int argc, char** configFiles)
   plugboard = Plugboard(configFiles[argc-1]);
 
   initialiseRotors(argc, configFiles);
-
-  // START Sacha's code
-
-  /*
-  if (argc > 2)
-  {
-    for(int i = 1; i < argc-1; i++)
-    {
-      rotor = new Rotor(arg[i]);
-      rotors.push_back(*rotor);
-    }
-  }
-  */
-
-  // END Sacha's code
-
 }
 
 string EnigmaMachine::input_message(string input_str)
@@ -42,9 +26,6 @@ string EnigmaMachine::input_message(string input_str)
         current_char = input_str[pos];
         str_result.push_back(encode(current_char -ASCII_A) + ASCII_A);
     }
-
-    //cout << "IN INPUT MESSAGE: I'm outputting the result " << str_result << endl;
-
     return str_result;
 }
 
@@ -54,21 +35,13 @@ int EnigmaMachine::encode(int input)
 
   int output = input; // for now
   
-  //cout << endl << "Input: " << input << endl;
   output = plugboard.encode(output);
-  //cout << "After plugboard: " << output << endl;
   output = push_forward(output);
-  //cout << "After rotors: " << output << endl;
   output = reflector.encode(output);
-  //cout << "After reflector: " << output << endl;
   output = push_backward(output);
-  //cout << "After rotors: " << output << endl;
   output = plugboard.encode(output);
-  //cout << "After plugboard: " << output << endl;
 
-  //cout << "Updating rotors... ";
   if(!rotors.empty()) update_rotors(0);
-  //cout << "Done." << endl;
 
   return output;
 }
@@ -90,8 +63,6 @@ void EnigmaMachine::update_rotors(int current_pos)
 
 int EnigmaMachine::push_forward(int input)
 {
-  //cout << "Number of rotors: " << rotors.size() << endl;
-
   int output = input; // for now
   for(Rotor rotor : rotors)
   {
@@ -117,4 +88,3 @@ void EnigmaMachine::initialiseRotors(int argc, char** configFiles)
     rotors.push_back(Rotor(configFiles[file]));
   }
 }
-

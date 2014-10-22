@@ -18,18 +18,13 @@ class EnigmaMachine : public Encode
 
   private:
 
-    // Fields
   	Plugboard plugboard;
   	Reflector reflector;
   	std::vector<Rotor> rotors;
-   	std::vector<int> read_file(char *filename);
    	std::vector<int> intCharMap;
    	
-   	// Initialisaiton
   	void initialiseRotors(int argc, char** configFiles);
-  	void initialisePlugboard(int argc, char** configFiles);
 
-    // Helpers
    	void update_rotors(int);
   	int push_forward(int input);
   	int push_backward(int input);

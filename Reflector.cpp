@@ -1,6 +1,5 @@
 #include "Reflector.h"
 
-// Pre: 0 <= chr <= 25
 int Reflector::encode(int input)
 {
 	assert(0 <= input && input <= 25);

@@ -10,6 +10,7 @@
 class Rotor : public Configurable, public Encode, public Decode
 {
   public:
+
     Rotor(char*);
     virtual int encode(int input);
     virtual int decode(int input);
@@ -17,13 +18,14 @@ class Rotor : public Configurable, public Encode, public Decode
     bool should_rotate_next();
 
   protected:
+
     virtual void configure(std::vector<int> configSettings);
 
   private:
+    
     std::vector<int> forward, backward;
     int rotation_count;
     void move_head_to_tail(std::vector<int> &mapping);
-    void move_tail_to_head(std::vector<int> mapping);
 };
 
 #endif /* ROTOR_H */

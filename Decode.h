@@ -4,6 +4,7 @@
 class Decode
 {
   public:
+  	
     virtual int decode(int input) = 0;
 };
 

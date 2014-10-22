@@ -4,7 +4,6 @@
 
 using namespace std;
 
-// Public
 Plugboard::Plugboard(char* settings)
 {
   mapping = std::vector<int>(LETTERS_IN_ALPHABET,0);
@@ -18,7 +17,6 @@ int Plugboard::encode(int input)
   return get_map().at(input);
 }
 
-// Protected
 void Plugboard::configure(std::vector<int> configSettings)
 {
   assert(configSettings.size() % 2 == 0); // must have even num of mappings
@@ -34,7 +32,6 @@ void Plugboard::configure(std::vector<int> configSettings)
   }
 }
 
-// Private
 std::vector<int> Plugboard::get_map()
 {
   return mapping;
