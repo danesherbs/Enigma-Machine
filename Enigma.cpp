@@ -16,20 +16,6 @@ EnigmaMachine::EnigmaMachine(int argc, char** configFiles)
   initialiseRotors(argc, configFiles);
 }
 
-string EnigmaMachine::input_message(string input_str)
-{
-  char current_char;
-  string str_result;
-
-  for(int pos = 0; pos < input_str.length(); pos++)
-  {   
-    current_char = input_str[pos];
-    str_result.push_back(encode(current_char -ASCII_A) + ASCII_A);
-  }
-  
-  return str_result;
-}
-
 int EnigmaMachine::encode(int input)
 {
   int output = input - ASCII_A; // for now

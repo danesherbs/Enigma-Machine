@@ -13,7 +13,6 @@ class EnigmaMachine : public Encode
   public:
 
     EnigmaMachine(int argc, char**);
-  	std::string input_message(std::string);
     virtual int encode(int input);
 
   private:

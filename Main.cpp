@@ -18,6 +18,8 @@ int main(int argc, char **argv)
     cin >> current_char;
     cout << (char) enigmaMachine.encode(current_char);
     cin >> ws;
+
+    if(cin.eof()) cout << endl;
   }
 
   return EXIT_SUCCESS;
