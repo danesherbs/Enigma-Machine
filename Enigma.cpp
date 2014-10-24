@@ -18,22 +18,23 @@ EnigmaMachine::EnigmaMachine(int argc, char** configFiles)
 
 string EnigmaMachine::input_message(string input_str)
 {
-    char current_char;
-    string str_result;
+  char current_char;
+  string str_result;
 
-    for(int pos = 0; pos < input_str.length(); pos++)
-    {
-        current_char = input_str[pos];
-        str_result.push_back(encode(current_char -ASCII_A) + ASCII_A);
-    }
-    return str_result;
+  for(int pos = 0; pos < input_str.length(); pos++)
+  {   
+    current_char = input_str[pos];
+    str_result.push_back(encode(current_char -ASCII_A) + ASCII_A);
+  }
+  
+  return str_result;
 }
 
 int EnigmaMachine::encode(int input)
 {
-  assert(0 <= input && input <= 25);
+  int output = input - ASCII_A; // for now
 
-  int output = input; // for now
+  assert(0 <= output && output <= 25);
   
   output = plugboard.encode(output);
   output = push_forward(output);
@@ -43,7 +44,7 @@ int EnigmaMachine::encode(int input)
 
   if(!rotors.empty()) update_rotors(0);
 
-  return output;
+  return output + ASCII_A;
 }
 
 void EnigmaMachine::update_rotors(int current_pos)
